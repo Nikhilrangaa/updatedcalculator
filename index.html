@@ -59,7 +59,11 @@
         </select>
 
         <button onclick="calculatePreProbability()">Calculate Pre-Test Probability</button>
-        
+
+        <h3>Or Enter Your Own Pre-Test Probability</h3>
+        <label for="customPreProbability">Pre-Test Probability (%)</label>
+        <input type="number" id="customPreProbability" placeholder="Enter Pre-Test Probability">
+
         <h3>Step 2: Post-Test Probability</h3>
         <label for="cadScore">CAD Test Score</label>
         <input type="number" id="cadScore" placeholder="Enter CAD test score">
@@ -113,12 +117,15 @@
         };
 
         function calculatePostProbability() {
-            const preProbabilityText = document.getElementById('result').innerText;
-            const preProbability = parseFloat(preProbabilityText.split(': ')[1].replace('%', ''));
+            let preProbability = parseFloat(document.getElementById('customPreProbability').value);
+            if (isNaN(preProbability)) {
+                const preProbabilityText = document.getElementById('result').innerText;
+                preProbability = parseFloat(preProbabilityText.split(': ')[1].replace('%', ''));
+            }
             const cadScore = parseFloat(document.getElementById('cadScore').value);
 
             if (isNaN(preProbability) || isNaN(cadScore)) {
-                alert('Please calculate pre-test probability and enter a valid CAD test score');
+                alert('Please calculate pre-test probability or enter a valid pre-test probability and CAD test score');
                 return;
             }
 
@@ -143,7 +150,7 @@
             const postOdds = preOdds * lr;
             const postProbability = postOdds / (1 + postOdds) * 100;
 
-            document.getElementById('result').innerHTML += `<br>Post-Test Probability: ${postProbability.toFixed(2)}%`;
+            document.getElementById('result').innerHTML = `Pre-Test Probability: ${preProbability.toFixed(2)}%<br>Post-Test Probability: ${postProbability.toFixed(2)}%`;
 
             // Add guidance based on ESC guidelines
             let guidance;
