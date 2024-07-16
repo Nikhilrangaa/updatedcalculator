@@ -151,19 +151,6 @@
             const postProbability = postOdds / (1 + postOdds) * 100;
 
             document.getElementById('result').innerHTML = `Pre-Test Probability: ${preProbability.toFixed(2)}%<br>Post-Test Probability: ${postProbability.toFixed(2)}%`;
-
-            // Add guidance based on ESC guidelines
-            let guidance;
-            if (postProbability < 15) {
-                guidance = "CAD can be ruled out.";
-            } else if (postProbability >= 15 && postProbability <= 65) {
-                guidance = "Imaging-based non-invasive testing is preferable.";
-            } else if (postProbability > 65 && postProbability <= 85) {
-                guidance = "Imaging-based non-invasive testing should be performed.";
-            } else {
-                guidance = "CAD can be ruled in.";
-            }
-            document.getElementById('result').innerHTML += `<br>Guidance: ${guidance}`;
         }
     </script>
 </body>
