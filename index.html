@@ -62,11 +62,14 @@
             display: inline-block;
             width: calc(100% - 24px);
         }
+        .result span, .guidance span {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>CAD Probability Calculator</h1>
+        <img src="/mnt/data/image.png" alt="Corvista Health Logo">
     </div>
     <div class="container">
         <h2>Step 1: Pre-Test Probability</h2>
@@ -93,7 +96,7 @@
         </select>
 
         <button onclick="calculatePreProbability()">Calculate Pre-Test Probability</button>
-        <span id="result" class="result"></span>
+        <span id="result" class="result"><span id="resultValue"></span></span>
 
         <h2>Or Enter Your Own Pre-Test Probability</h2>
         <label for="customPreProbability">Pre-Test Probability (%)</label>
@@ -104,9 +107,9 @@
         <input type="number" id="cadScore" placeholder="Enter CAD test score">
 
         <button onclick="calculatePostProbability()">Calculate Post-Test Probability</button>
-        <span id="postResult" class="result"></span>
+        <span id="postResult" class="result"><span id="postResultValue"></span></span>
 
-        <div id="guidance" class="guidance"></div>
+        <div id="guidance" class="guidance"><span id="guidanceValue"></span></div>
     </div>
 
     <script>
@@ -136,7 +139,7 @@
 
             const preProbability = preTestProbabilityTable[gender][age][symptoms];
 
-            document.getElementById('result').innerHTML = `Pre-Test Probability: ${preProbability}%`;
+            document.getElementById('resultValue').innerHTML = `Pre-Test Probability: <span>${preProbability}%</span>`;
         }
 
         const likelihoodRatios = {
@@ -186,7 +189,7 @@
             const postOdds = preOdds * lr;
             const postProbability = postOdds / (1 + postOdds) * 100;
 
-            document.getElementById('postResult').innerHTML = `Post-Test Probability: ${postProbability.toFixed(2)}%`;
+            document.getElementById('postResultValue').innerHTML = `Post-Test Probability: <span>${postProbability.toFixed(2)}%</span>`;
 
             provideGuidance(postProbability);
         }
@@ -202,9 +205,8 @@
                 guidanceText = "Intermediate probability of CAD. Additional non-invasive testing such as stress echocardiography, stress SPECT, stress PET, stress CMR, or CCTA is recommended.";
             }
 
-            document.getElementById('guidance').innerHTML = `Guidance: ${guidanceText}`;
+            document.getElementById('guidanceValue').innerHTML = `Guidance: <span>${guidanceText}</span>`;
         }
     </script>
 </body>
 </html>
-
