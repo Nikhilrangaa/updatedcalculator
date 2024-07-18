@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAD Probability Calculator</title>
+    <title>Converting Corvista Score to Post-Test Probability Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,6 +17,8 @@
             color: white;
             padding: 20px 0;
             text-align: center;
+            font-size: 24px;
+            font-weight: bold;
         }
         .container {
             max-width: 800px;
@@ -27,6 +29,7 @@
         }
         h2 {
             color: #004b91;
+            margin-top: 20px;
         }
         label {
             font-weight: bold;
@@ -72,7 +75,7 @@
 </head>
 <body>
     <div class="header">
-        <img src="https://www.corvista.com/wp-content/uploads/2021/06/CorVista-Logo.png" alt="Corvista Health Logo" style="width: 200px;">
+        Converting Corvista Score to Post-Test Probability Calculator
     </div>
     <div class="container">
         <h2>Step 1: Pre-Test Probability</h2>
@@ -99,7 +102,7 @@
         </select>
 
         <button onclick="calculatePreProbability()">Calculate Pre-Test Probability</button>
-        <span id="result" class="result"><span id="resultValue" class="bold-text"></span></span>
+        <div id="result" class="result"><span id="resultValue" class="bold-text"></span></div>
 
         <h2>Or Enter Your Own Pre-Test Probability</h2>
         <label for="customPreProbability">Pre-Test Probability (%)</label>
@@ -110,7 +113,7 @@
         <input type="number" id="cadScore" placeholder="Enter CAD test score">
 
         <button onclick="calculatePostProbability()">Calculate Post-Test Probability</button>
-        <span id="postResult" class="result"><span id="postResultValue" class="bold-text"></span></span>
+        <div id="postResult" class="result"><span id="postResultValue" class="bold-text"></span></div>
 
         <div id="guidance" class="guidance"><span id="guidanceValue"></span></div>
     </div>
