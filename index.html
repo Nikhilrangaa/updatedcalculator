@@ -13,7 +13,7 @@
             color: #333;
         }
         .header {
-            background-color: #005baa;
+            background-color: #004b91;
             color: white;
             padding: 20px 0;
             text-align: center;
@@ -26,7 +26,7 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
         h2 {
-            color: #005baa;
+            color: #004b91;
         }
         label {
             font-weight: bold;
@@ -43,7 +43,7 @@
         }
         button {
             padding: 10px 20px;
-            background-color: #005baa;
+            background-color: #004b91;
             color: white;
             border: none;
             cursor: pointer;
@@ -52,24 +52,27 @@
             margin-top: 10px;
         }
         button:hover {
-            background-color: #004b91;
+            background-color: #003a70;
         }
         .result, .guidance {
             margin-top: 20px;
             padding: 10px;
             background-color: #e7f3fe;
-            border-left: 4px solid #2196F3;
+            border-left: 4px solid #004b91;
             display: inline-block;
             width: calc(100% - 24px);
         }
         .result span, .guidance span {
             font-weight: bold;
         }
+        .bold-text {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="/mnt/data/image.png" alt="Corvista Health Logo">
+        <img src="https://www.corvista.com/wp-content/uploads/2021/06/CorVista-Logo.png" alt="Corvista Health Logo" style="width: 200px;">
     </div>
     <div class="container">
         <h2>Step 1: Pre-Test Probability</h2>
@@ -96,7 +99,7 @@
         </select>
 
         <button onclick="calculatePreProbability()">Calculate Pre-Test Probability</button>
-        <span id="result" class="result"><span id="resultValue"></span></span>
+        <span id="result" class="result"><span id="resultValue" class="bold-text"></span></span>
 
         <h2>Or Enter Your Own Pre-Test Probability</h2>
         <label for="customPreProbability">Pre-Test Probability (%)</label>
@@ -107,7 +110,7 @@
         <input type="number" id="cadScore" placeholder="Enter CAD test score">
 
         <button onclick="calculatePostProbability()">Calculate Post-Test Probability</button>
-        <span id="postResult" class="result"><span id="postResultValue"></span></span>
+        <span id="postResult" class="result"><span id="postResultValue" class="bold-text"></span></span>
 
         <div id="guidance" class="guidance"><span id="guidanceValue"></span></div>
     </div>
@@ -139,7 +142,7 @@
 
             const preProbability = preTestProbabilityTable[gender][age][symptoms];
 
-            document.getElementById('resultValue').innerHTML = `Pre-Test Probability: <span>${preProbability}%</span>`;
+            document.getElementById('resultValue').innerHTML = `Pre-Test Probability: <span class="bold-text">${preProbability}%</span>`;
         }
 
         const likelihoodRatios = {
@@ -189,7 +192,7 @@
             const postOdds = preOdds * lr;
             const postProbability = postOdds / (1 + postOdds) * 100;
 
-            document.getElementById('postResultValue').innerHTML = `Post-Test Probability: <span>${postProbability.toFixed(2)}%</span>`;
+            document.getElementById('postResultValue').innerHTML = `Post-Test Probability: <span class="bold-text">${postProbability.toFixed(2)}%</span>`;
 
             provideGuidance(postProbability);
         }
@@ -205,7 +208,7 @@
                 guidanceText = "Intermediate probability of CAD. Additional non-invasive testing such as stress echocardiography, stress SPECT, stress PET, stress CMR, or CCTA is recommended.";
             }
 
-            document.getElementById('guidanceValue').innerHTML = `Guidance: <span>${guidanceText}</span>`;
+            document.getElementById('guidanceValue').innerHTML = `Guidance: <span class="bold-text">${guidanceText}</span>`;
         }
     </script>
 </body>
